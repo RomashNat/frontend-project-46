@@ -1,5 +1,5 @@
 # Name of workflow
-name: Node CI
+name: genDiff
 
 # Trigger the workflow on push or pull request
 on:
@@ -35,8 +35,14 @@ jobs:
           cache: 'npm'
       - run: make install
       - run: make lint
-      - run: make test-coverage
-      - name: SonarQube Scan
-        uses: SonarSource/sonarqube-scan-action@v5
+      - run: make test
+      - name: Test & publish code coverage
+          # Publish code coverage on Code Climate
+          # https://github.com/paambaati/codeclimate-action
+        uses: paambaati/codeclimate-action@v5.0.0
+          # Add Code Climate secret key
         env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          CC_TEST_REPORTER_ID: ${{ secrets.SONAR_TOKEN }}
+        with:
+          coverageCommand: make test-coverage
+          debug: true
