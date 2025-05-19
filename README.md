@@ -9,6 +9,10 @@ This is the programm for finding the differences between two files.
 ## SonarQube Scanner
 [![Coverage Status](https://sonarcloud.io/project/configuration?id=RomashNat_frontend-project-46)]
 
+## SonarQube Scanner
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=RomashNat_frontend-project-46&metric=alert_status)](https://sonarcloud.io/project/configuration?id=RomashNat_frontend-project-46)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=RomashNat_frontend-project-46&metric=coverage)](https://sonarcloud.io/project/configuration?id=RomashNat_frontend-project-46)
+
 
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/RomashNat/frontend-project-46/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/RomashNat/frontend-project-46/actions)
