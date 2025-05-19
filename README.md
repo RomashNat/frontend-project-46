@@ -7,7 +7,7 @@ This is the programm for finding the differences between two files.
 [![Maintainability](https://api.codeclimate.com/v1/badges/80cabe5e78a396c9574d/maintainability)](https://codeclimate.com/github/RomashNat/frontend-project-46/maintainability)
 
 ## SonarQube Scanner
-[![Coverage Status](https://img.shields.io/badge/Coverage-<COVERAGE_PERCENTAGE>%-green)](https://sonarcloud.io/project/configuration?id=RomashNat_frontend-project-46)
+[![Coverage Status](https://sonarcloud.io/project/configuration?id=RomashNat_frontend-project-46)]
 
 
 ### Hexlet tests and linter status:
