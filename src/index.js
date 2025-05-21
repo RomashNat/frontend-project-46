@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import parser from './parser.js';
-import _ from 'lodash';
+import _, { isObject } from 'lodash';
 
 const getFileType = (filePath) => {
   const extname = path.extname(filePath);
@@ -11,7 +11,58 @@ const getFileType = (filePath) => {
   return 'json';
 };
 
-const genDiff = (filepath1, filepath2) => {
+const findDiff = (obj1, obj2) => {
+
+  const key1 = Object.keys(obj1);
+  const key2 = Object.keys(obj2);
+
+  const allKeys = _.sortBy(_.union(key1, key2));
+
+  const result = allKeys.reduce((acc, key) => {
+    if (isObject(obj1[key]) && isObject(obj2[key])) {
+      const temp = findDiff(obj1[key], obj2[key]);
+      acc.push({
+        key,
+        type: 'nested',
+        children: temp
+      })
+    }
+    if (!key2.includes(key)) {
+      acc.push({
+        key,
+        type: 'remove',
+        value: obj1[key]
+      })
+    }
+    if (!key1.includes(key)) {
+      acc.push({
+        key,
+        type: 'add',
+        value: obj2[key]
+      })
+    }
+    if (obj1[key] !== obj2[key]) {
+      acc.push({
+        key,
+        type: 'changed',
+        oldValue: obj1[key],
+        newValue: obj2[key]
+      })
+    }
+    if (obj1[key] === obj2[key]) {
+      acc.push({
+        key,
+        type: 'Unchanged',
+        value: obj1[key]
+      })
+    }
+    return acc;
+  }, [])
+  return result;
+};
+
+
+export const genDiff = (filepath1, filepath2, stylish) => {
   const content1 = fs.readFileSync(path.resolve(filepath1), 'utf-8');
   const content2 = fs.readFileSync(path.resolve(filepath2), 'utf-8');
 
@@ -20,27 +71,10 @@ const genDiff = (filepath1, filepath2) => {
 
   const parsedData1 = parser(content1, fileType1);
   const parsedData2 = parser(content2, fileType2);
-
-  const uniqueKeys = _.union(Object.keys(parsedData1), Object.keys(parsedData2));
-  const sortedKeys = _.sortBy(uniqueKeys);
-
-  const diff = sortedKeys.map((key) => {
-    if (!(key in parsedData1)) {
-      return `+ ${key}: ${parsedData2[key]}`;
-    }
-    if (!(key in parsedData2)) {
-      return `- ${key}: ${parsedData1[key]}`;
-    }
-    if (parsedData1[key] !== parsedData2[key]) {
-      return `- ${key}: ${parsedData1[key]}\n+ ${key}: ${parsedData2[key]}`;
-    }
-    return `  ${key}: ${parsedData1[key]}`;
-  });
-
-  return `{\n${diff.join('\n')}\n}`;
+  const diff = findDiff(parsedData1, parsedData2);
+  // осталось отформатировать согласно расширению файлов и вернуть результат
 };
 
-export default genDiff;
 
 
 

@@ -17,5 +17,6 @@ This is the programm for finding the differences between two files.
 
 ### Comparing of flat format files: .json (example of work):
 [![asciicast](https://asciinema.org/a/BTEYZP8LxSga7EmhUUdCsAvVo.svg)](https://asciinema.org/a/BTEYZP8LxSga7EmhUUdCsAvVo)
+
 ### Comparing of flat format files: .yml, .yaml (example of work):
 [![asciicast](https://asciinema.org/a/crzsgyj4jOrZhDcfDyBMws9A6.svg)](https://asciinema.org/a/crzsgyj4jOrZhDcfDyBMws9A6)
