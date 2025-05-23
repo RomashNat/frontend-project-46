@@ -1,7 +1,9 @@
 import fs from 'fs';
 import path from 'path';
 import parser from './parser.js';
-import _, { isObject } from 'lodash';
+import _ from 'lodash';
+
+const { isObject } = _;
 
 const getFileType = (filePath) => {
   const extname = path.extname(filePath);
@@ -52,7 +54,7 @@ const findDiff = (obj1, obj2) => {
     if (obj1[key] === obj2[key]) {
       acc.push({
         key,
-        type: 'Unchanged',
+        type: 'unchanged',
         value: obj1[key]
       })
     }
@@ -61,8 +63,7 @@ const findDiff = (obj1, obj2) => {
   return result;
 };
 
-
-export const genDiff = (filepath1, filepath2, stylish) => {
+const genDiff = (filepath1, filepath2, format = 'stylish') => {
   const content1 = fs.readFileSync(path.resolve(filepath1), 'utf-8');
   const content2 = fs.readFileSync(path.resolve(filepath2), 'utf-8');
 
@@ -73,7 +74,21 @@ export const genDiff = (filepath1, filepath2, stylish) => {
   const parsedData2 = parser(content2, fileType2);
   const diff = findDiff(parsedData1, parsedData2);
   // осталось отформатировать согласно расширению файлов и вернуть результат
+  try {
+    if (format === 'stylish') {
+      return stylish(diff);
+    }
+    if (format === 'plain') {
+      return plain(diff);
+    }
+    throw new Error(`Unknown format: ${format}`);
+  } catch (error) {
+    console.log(error.message);
+    return null;
+  }
 };
+
+export default genDiff;
 
 
 

@@ -10,9 +10,19 @@ test('genDiff', () => {
     const filePath2 = getFixturesPath('file2.json');
     const calculatedDiff = genDiff(filePath1, filePath2);
 
-    console.log('Diff:', calculatedDiff);
-    console.log('Expected:', result);
+    console.log('Diff for json:', calculatedDiff);
+    console.log('Expected json:', result);
 
     expect(calculatedDiff).toEqual(result);
   });
   
+  test('gendiff for yaml', () => {
+    const filePath1 = getFixturesPath('file1.yml');
+    const filePath2 = getFixturesPath('file2.yml');
+    const calculatedDiff = genDiff(filePath1, filePath2);
+
+    console.log('Diff for yml:', calculatedDiff);
+    console.log('Expected yml:', result);
+
+    expect(calculatedDiff).toEqual(result);
+  });
