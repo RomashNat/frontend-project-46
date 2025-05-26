@@ -8,7 +8,7 @@ const result = fs.readFileSync(getFixturesPath('result.txt'), 'utf-8').trim();
 test('genDiff', () => {
     const filePath1 = getFixturesPath('file1.json');
     const filePath2 = getFixturesPath('file2.json');
-    const calculatedDiff = genDiff(filePath1, filePath2);
+    const calculatedDiff = genDiff(filePath1, filePath2, 'stylish');
 
     console.log('Diff for json:', calculatedDiff);
     console.log('Expected json:', result);
@@ -19,7 +19,7 @@ test('genDiff', () => {
   test('gendiff for yaml', () => {
     const filePath1 = getFixturesPath('file1.yml');
     const filePath2 = getFixturesPath('file2.yml');
-    const calculatedDiff = genDiff(filePath1, filePath2);
+    const calculatedDiff = genDiff(filePath1, filePath2, 'plain');
 
     console.log('Diff for yml:', calculatedDiff);
     console.log('Expected yml:', result);
