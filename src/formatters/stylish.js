@@ -1,5 +1,3 @@
-import _ from 'lodash';
-
 const formatStylish = (diff, depth = 0) => {
     const indent = '  '.repeat(depth);
     const lines = diff.map((node) => {
@@ -7,7 +5,7 @@ const formatStylish = (diff, depth = 0) => {
       
       switch (type) {
         case 'nested':
-          return `${indent}  ${key}: ${stylish(children, depth + 1)}`;
+          return `${indent}  ${key}: ${children, depth + 1}`;
         case 'remove':
           return `${indent}- ${key}: ${value}`;
         case 'add':
