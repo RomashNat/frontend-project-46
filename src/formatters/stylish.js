@@ -24,16 +24,17 @@ const formatStylish = (tree) => {
       const {
         key, children, type, oldValue, newValue,
       } = node;
+      console.log(type);
       switch (type) {
         case 'nested':
           return `${currentIndent}  ${key}: ${iter(children, depth + 1)}`;
-        case 'deleted':
+        case 'removed':
           return `${currentIndent}- ${key}: ${stringify(oldValue, depth + 1)}`;
         case 'added':
           return `${currentIndent}+ ${key}: ${stringify(newValue, depth + 1)}`;
         case 'unchanged':
           return `${currentIndent}  ${key}: ${stringify(oldValue, depth + 1)}`;
-        case 'changed':
+        case 'modified':
           return [
             `${currentIndent}- ${key}: ${stringify(oldValue, depth + 1)}`,
             `${currentIndent}+ ${key}: ${stringify(newValue, depth + 1)}`,
