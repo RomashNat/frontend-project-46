@@ -9,7 +9,7 @@ const parse = (fileContent, fileType) => {
       return JSON.parse(fileContent);
     }
   }
-  catch (error) {
+  catch {
     console.log('Error reading file');
     return null
   }

@@ -1,11 +1,9 @@
 import fs from 'fs';
 import path from 'path';
 import parser from './parser.js';
-import _ from 'lodash';
 import selectFormat from './formatters/format.js';
+import findDiff from './findDiff.js';
 
-
-const { isObject } = _;
 
 const getFileType = (filePath) => {
   const extname = path.extname(filePath);
@@ -13,56 +11,6 @@ const getFileType = (filePath) => {
     return 'yaml';
   }
   return 'json';
-};
-
-const findDiff = (obj1, obj2) => {
-
-  const key1 = Object.keys(obj1);
-  const key2 = Object.keys(obj2);
-
-  const allKeys = _.sortBy(_.union(key1, key2));
-
-  const result = allKeys.reduce((acc, key) => {
-    if (isObject(obj1[key]) && isObject(obj2[key])) {
-      const temp = findDiff(obj1[key], obj2[key]);
-      acc.push({
-        key,
-        type: 'nested',
-        children: temp
-      })
-    }
-    if (!key2.includes(key)) {
-      acc.push({
-        key,
-        type: 'remove',
-        value: obj1[key]
-      })
-    }
-    if (!key1.includes(key)) {
-      acc.push({
-        key,
-        type: 'add',
-        value: obj2[key]
-      })
-    }
-    if (obj1[key] !== obj2[key]) {
-      acc.push({
-        key,
-        type: 'changed',
-        oldValue: obj1[key],
-        newValue: obj2[key]
-      })
-    }
-    if (obj1[key] === obj2[key]) {
-      acc.push({
-        key,
-        type: 'unchanged',
-        value: obj1[key]
-      })
-    }
-    return acc;
-  }, [])
-  return result;
 };
 
 const genDiff = (filepath1, filepath2, formatName) => {
@@ -76,9 +24,9 @@ const genDiff = (filepath1, filepath2, formatName) => {
   const parsedData2 = parser(content2, fileType2);
 
    const diff = findDiff(parsedData1, parsedData2);
- 
-   const format = selectFormat(formatName);
-   return format(diff);
+
+   return selectFormat(diff, formatName);
+   
 };
 
 export default genDiff;

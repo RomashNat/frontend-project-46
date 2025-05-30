@@ -5,7 +5,7 @@ files1:
 	bin/gendiff.js __fixtures__/file1.json __fixtures__/file2.json
 
 files2:
-	bin/gendiff.js __fixtures__/filepath1.yml __fixtures__/filepath2.yml
+	bin/gendiff.js __fixtures__/file1.yml __fixtures__/file2.yml
 
 install:
 	npm ci

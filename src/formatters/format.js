@@ -1,4 +1,4 @@
-import getStylish from './stylish.js';
+import formatStylish from './stylish.js';
 import formatPlain from './plain.js';
 import formatJson from './json.js';
 
@@ -6,7 +6,7 @@ import formatJson from './json.js';
 const selectFormat = (diff, format) => {
     switch (format) {
         case 'stylish':
-            return getStylish(diff);
+            return formatStylish(diff);
         case 'plain':
             return formatPlain(diff);
         case 'json':
