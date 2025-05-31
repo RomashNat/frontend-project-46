@@ -12,7 +12,7 @@ const findDiff = (data1, data2) => {
     }
 
     if (!_.has(data1, key)) {
-      return { key, type: 'add', value: value2 }
+      return { key, type: 'added', value: value2 }
     }
 
     if (_.isEqual(value1, value2)) {

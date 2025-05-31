@@ -27,7 +27,7 @@ const outPutFormat = (obj, parentName) => {
             return outPutFormat(children, parentKey);
         case 'remove':
             return `Property '${parentKey}' was removed`
-        case 'add':
+        case 'added':
             return `Property '${parentKey}' was added with value: ${complexValue(value)}`
         case 'changed':
             return `Property '${parentKey}' was updated. From ${complexValue(oldValue)} to ${complexValue(newValue)}`

@@ -29,7 +29,7 @@ const formatStylish = (tree) => {
           return [`${currentIndent}  ${key}: ${iter(children, depth + 1)}`];
         case 'remove':
           return [`${currentIndent}- ${key}: ${stringify(oldValue, depth + 1)}`];
-        case 'add':
+        case 'added':
           return [`${currentIndent}+ ${key}: ${stringify(newValue, depth + 1)}`];
         case 'unchanged':
           return [`${currentIndent}  ${key}: ${stringify(oldValue, depth + 1)}`];

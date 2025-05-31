@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">55.55% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>9/18</span>
+                <span class='fraction'>10/18</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">16.66% </span>
+                <span class="strong">28.57% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>2/12</span>
+                <span class='fraction'>4/14</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">52.94% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>9/17</span>
+                <span class='fraction'>8/16</span>
             </div>
         
             
@@ -100,20 +100,36 @@
 <a name='L35'></a><a href='#L35'>35</a>
 <a name='L36'></a><a href='#L36'>36</a>
 <a name='L37'></a><a href='#L37'>37</a>
-<a name='L38'></a><a href='#L38'>38</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L38'></a><a href='#L38'>38</a>
+<a name='L39'></a><a href='#L39'>39</a>
+<a name='L40'></a><a href='#L40'>40</a>
+<a name='L41'></a><a href='#L41'>41</a>
+<a name='L42'></a><a href='#L42'>42</a>
+<a name='L43'></a><a href='#L43'>43</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -125,54 +141,53 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import _ from 'lodash';
 &nbsp;
-const getValue = <span class="fstat-no" title="function not covered" >(v</span>alue) =&gt; {
-<span class="cstat-no" title="statement not covered" >  if (typeof value === 'string') <span class="cstat-no" title="statement not covered" >return `'${value}'`;</span></span>
-<span class="cstat-no" title="statement not covered" >  return (_.isObject(value)) ? '[complex value]' : String(value);</span>
-};
 &nbsp;
-const formatPlain = (tree) =&gt; {
-  const iter = (obj, pathToObj) =&gt; {
-    const result = obj.flatMap((node) =&gt; {
-      const {
-        key, children, status, value1, value2,
-      } = node;
-      const pathToNode = (pathToObj === '') ? `${key}` : <span class="branch-1 cbranch-no" title="branch not covered" >`${pathToObj}.${key}`;</span>
+const complexValue = <span class="fstat-no" title="function not covered" >(v</span>alue) =&gt; {
+<span class="cstat-no" title="statement not covered" >    if (_.isObject(value) || _.isArray(value)) {</span>
+<span class="cstat-no" title="statement not covered" >        return '[complex value]'</span>
+    }
+<span class="cstat-no" title="statement not covered" >    if (_.isString(value)) {</span>
+<span class="cstat-no" title="statement not covered" >        return `'${value}'`</span>
+    }
+}
+const outPutFormat = (obj, parentName) =&gt; {
+    const {
+        key,
+        type,
+        children,
+        value,
+        oldValue,
+        newValue
+    } = obj;
 &nbsp;
-      switch (status) {
-<span class="branch-0 cbranch-no" title="branch not covered" >        case 'nested':</span>
-<span class="cstat-no" title="statement not covered" >          return iter(children, pathToNode);</span>
+&nbsp;
+    const parentKey = parentName ? `${parentName}.${key}` : key;
+&nbsp;
+    switch (type) {
+        case 'nested':
+            return outPutFormat(children, parentKey);
 <span class="branch-1 cbranch-no" title="branch not covered" >        case 'remove':</span>
-<span class="cstat-no" title="statement not covered" >          return `Property '${pathToNode}' was removed`;</span>
-<span class="branch-2 cbranch-no" title="branch not covered" >        case 'add':</span>
-<span class="cstat-no" title="statement not covered" >          return `Property '${pathToNode}' was added with value: ${getValue(value2)}`;</span>
+<span class="cstat-no" title="statement not covered" >            return `Property '${parentKey}' was removed`</span>
+<span class="branch-2 cbranch-no" title="branch not covered" >        case 'added':</span>
+<span class="cstat-no" title="statement not covered" >            return `Property '${parentKey}' was added with value: ${complexValue(value)}`</span>
 <span class="branch-3 cbranch-no" title="branch not covered" >        case 'changed':</span>
-<span class="cstat-no" title="statement not covered" >          return `Property '${pathToNode}' was updated. From ${getValue(value1)} to ${getValue(value2)}`;</span>
+<span class="cstat-no" title="statement not covered" >            return `Property '${parentKey}' was updated. From ${complexValue(oldValue)} to ${complexValue(newValue)}`</span>
 <span class="branch-4 cbranch-no" title="branch not covered" >        case 'unchanged':</span>
-<span class="cstat-no" title="statement not covered" >          return [];</span>
+<span class="cstat-no" title="statement not covered" >            return ``</span>
         default:
-          throw new Error(`Unknown type: ${status}.`);
-      }
-    });
+            throw new Error(`Unknown format: ${type}`)
+    }
+}
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    return result.join('\n');</span>
-  };
-&nbsp;
-  return iter(tree, '');
-};
+const formatPlain = (diff) =&gt; `${diff.map((object) =&gt; outPutFormat(object)).join('\n').trim()}`;
 &nbsp;
 export default formatPlain;</pre></td></tr></table></pre>
 
@@ -181,7 +196,7 @@ export default formatPlain;</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-05-31T15:08:59.272Z
+                at 2025-05-31T15:17:05.663Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
