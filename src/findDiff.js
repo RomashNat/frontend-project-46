@@ -1,56 +1,40 @@
 import _ from 'lodash';
 
-const { isObject } = _;
+const findDiff = (data1, data2) => {
+  const keys = _.sortBy(_.union(_.keys(data1), _.keys(data2)))
 
-const findDiff = (obj1, obj2) => {
+  return keys.map((key) => {
+    const value1 = data1[key]
+    const value2 = data2[key]
 
-    const key1 = Object.keys(obj1);
-    const key2 = Object.keys(obj2);
-  
-    const allKeys = _.sortBy(_.union(key1, key2));
-  
-    const result = allKeys.reduce((acc, key) => {
-      if (isObject(obj1[key]) && isObject(obj2[key])) {
-        const temp = findDiff(obj1[key], obj2[key]);
-        acc.push({
-          key,
-          type: 'nested',
-          children: temp
-        })
+    if (!_.has(data2, key)) {
+      return { key, type: 'removed', value: value1 }
+    }
+
+    if (!_.has(data1, key)) {
+      return { key, type: 'added', value: value2 }
+    }
+
+    if (_.isEqual(value1, value2)) {
+      return { key, type: 'unchanged', value: value1 }
+    }
+
+    if (_.isObject(value1) && _.isObject(value2) && !Array.isArray(value1) && !Array.isArray(value2)) {
+      return {
+        key,
+        type: 'nested',
+        children: findDiff(value1, value2),
       }
-      if (!key2.includes(key)) {
-        acc.push({
-          key,
-          type: 'removed',
-          value: obj1[key]
-        })
-      }
-      if (!key1.includes(key)) {
-        acc.push({
-          key,
-          type: 'added',
-          value: obj2[key]
-        })
-      }
-      if (obj1[key] !== obj2[key]) {
-        acc.push({
-          key,
-          type: 'modified',
-          oldValue: obj1[key],
-          newValue: obj2[key]
-        })
-      }
-      if (obj1[key] === obj2[key]) {
-        acc.push({
-          key,
-          type: 'unchanged',
-          value: obj1[key]
-        })
-      }
-      return acc;
-    }, [])
-    return result;
-  };
+    }
+
+    return {
+      key,
+      type: 'changed',
+      oldValue: value1,
+      newValue: value2,
+    }
+  })
+}
 
   export default findDiff;
   

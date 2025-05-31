@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">13.33% </span>
+                <span class="strong">13.79% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>4/30</span>
+                <span class='fraction'>4/29</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/14</span>
+                <span class='fraction'>0/17</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">15.38% </span>
+                <span class="strong">16% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>4/26</span>
+                <span class='fraction'>4/25</span>
             </div>
         
             
@@ -112,8 +112,7 @@
 <a name='L47'></a><a href='#L47'>47</a>
 <a name='L48'></a><a href='#L48'>48</a>
 <a name='L49'></a><a href='#L49'>49</a>
-<a name='L50'></a><a href='#L50'>50</a>
-<a name='L51'></a><a href='#L51'>51</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L50'></a><a href='#L50'>50</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -138,7 +137,6 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -166,17 +164,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import _ from 'lodash';
 &nbsp;
 const getIdent = <span class="fstat-no" title="function not covered" >(d</span>epth, replacer = <span class="branch-0 cbranch-no" title="branch not covered" >' ',</span> spacesCount = <span class="branch-0 cbranch-no" title="branch not covered" >4)</span> =&gt; <span class="cstat-no" title="statement not covered" >replacer.repeat((depth * spacesCount) - 2);</span>
-const getBrackeIndent = <span class="fstat-no" title="function not covered" >(d</span>epth, replacer = <span class="branch-0 cbranch-no" title="branch not covered" >' ',</span> spacesCount = <span class="branch-0 cbranch-no" title="branch not covered" >4)</span> =&gt; <span class="cstat-no" title="statement not covered" >replacer.repeat((depth * spacesCount) - spacesCount);</span>
+const getBracketIndent = <span class="fstat-no" title="function not covered" >(d</span>epth, replacer = <span class="branch-0 cbranch-no" title="branch not covered" >' ',</span> spacesCount = <span class="branch-0 cbranch-no" title="branch not covered" >4)</span> =&gt; <span class="cstat-no" title="statement not covered" >replacer.repeat((depth * spacesCount) - spacesCount);</span>
 &nbsp;
 const stringify = <span class="fstat-no" title="function not covered" >(d</span>ata, depth = <span class="branch-0 cbranch-no" title="branch not covered" >1)</span> =&gt; {
-<span class="cstat-no" title="statement not covered" >  if (!_.isPlainObject(data)) <span class="cstat-no" title="statement not covered" >return `${data}`;</span></span>
+<span class="cstat-no" title="statement not covered" >  if (data === null || !_.isObject(data) &amp;&amp; !_.isArray(data)) <span class="cstat-no" title="statement not covered" >return `${data}`;</span></span>
 &nbsp;
   const currentIndent = <span class="cstat-no" title="statement not covered" >getIdent(depth);</span>
-  const bracketIndent = <span class="cstat-no" title="statement not covered" >getBrackeIndent(depth);</span>
+  const bracketIndent = <span class="cstat-no" title="statement not covered" >getBracketIndent(depth);</span>
   const currentValue = <span class="cstat-no" title="statement not covered" >Object.entries(data);</span>
 &nbsp;
   const lines = <span class="cstat-no" title="statement not covered" >currentValue.map(<span class="fstat-no" title="function not covered" >([</span>key, value]) =&gt; <span class="cstat-no" title="statement not covered" >`${currentIndent}  ${key}: ${stringify(value, depth + 1)}`)</span>;</span>
-&nbsp;
+  
   const result = <span class="cstat-no" title="statement not covered" >['{', ...lines, `${bracketIndent}}`].join('\n');</span>
 <span class="cstat-no" title="statement not covered" >  return result;</span>
 };
@@ -184,22 +182,21 @@ const stringify = <span class="fstat-no" title="function not covered" >(d</span>
 const formatStylish = <span class="fstat-no" title="function not covered" >(t</span>ree) =&gt; {
   const iter = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(c</span>urrentValue, depth = <span class="branch-0 cbranch-no" title="branch not covered" >1)</span> =&gt; {</span>
     const currentIndent = <span class="cstat-no" title="statement not covered" >getIdent(depth);</span>
-    const bracketIndent = <span class="cstat-no" title="statement not covered" >getBrackeIndent(depth);</span>
+    const bracketIndent = <span class="cstat-no" title="statement not covered" >getBracketIndent(depth);</span>
     const lines = <span class="cstat-no" title="statement not covered" >currentValue.flatMap(<span class="fstat-no" title="function not covered" >(n</span>ode) =&gt; {</span>
       const {
         key, children, type, oldValue, newValue,
       } = <span class="cstat-no" title="statement not covered" >node;</span>
-<span class="cstat-no" title="statement not covered" >      console.log(type);</span>
 <span class="cstat-no" title="statement not covered" >      switch (type) {</span>
         case 'nested':
-<span class="cstat-no" title="statement not covered" >          return `${currentIndent}  ${key}: ${iter(children, depth + 1)}`;</span>
+<span class="cstat-no" title="statement not covered" >          return [`${currentIndent}  ${key}: ${iter(children, depth + 1)}`];</span>
         case 'removed':
-<span class="cstat-no" title="statement not covered" >          return `${currentIndent}- ${key}: ${stringify(oldValue, depth + 1)}`;</span>
+<span class="cstat-no" title="statement not covered" >          return [`${currentIndent}- ${key}: ${stringify(oldValue, depth + 1)}`];</span>
         case 'added':
-<span class="cstat-no" title="statement not covered" >          return `${currentIndent}+ ${key}: ${stringify(newValue, depth + 1)}`;</span>
+<span class="cstat-no" title="statement not covered" >          return [`${currentIndent}+ ${key}: ${stringify(newValue, depth + 1)}`];</span>
         case 'unchanged':
-<span class="cstat-no" title="statement not covered" >          return `${currentIndent}  ${key}: ${stringify(oldValue, depth + 1)}`;</span>
-        case 'modified':
+<span class="cstat-no" title="statement not covered" >          return [`${currentIndent}  ${key}: ${stringify(oldValue, depth + 1)}`];</span>
+        case 'changed':
 <span class="cstat-no" title="statement not covered" >          return [</span>
             `${currentIndent}- ${key}: ${stringify(oldValue, depth + 1)}`,
             `${currentIndent}+ ${key}: ${stringify(newValue, depth + 1)}`,
@@ -212,7 +209,7 @@ const formatStylish = <span class="fstat-no" title="function not covered" >(t</s
   };
 <span class="cstat-no" title="statement not covered" >  return iter(tree);</span>
 };
-  
+&nbsp;
 export default formatStylish;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -220,7 +217,7 @@ export default formatStylish;</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-05-30T13:11:04.186Z
+                at 2025-05-31T10:02:17.144Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

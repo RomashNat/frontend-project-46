@@ -12,7 +12,7 @@ const selectFormat = (diff, format) => {
         case 'json':
             return formatJson(diff);
         default:
-            throw Error(`Unknown format: ${format}`);
+            throw new Error(`Unknown format: ${format}`);
     }
 };
 

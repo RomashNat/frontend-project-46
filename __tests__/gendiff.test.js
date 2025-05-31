@@ -17,25 +17,25 @@ describe('formatters', () => {
   const fileYmlPath1 = getFixturesPath('file1.yml');
   const fileYmlPath2 = getFixturesPath('file2.yml');
 
-  const stylishDiff = fs.readFileSync(getFixturesPath('stylishStyle.txt'), 'utf-8').trim();
-  const plainDiff = fs.readFileSync(getFixturesPath('plainStyle.txt'), 'utf-8').trim();
-  const jsonDiff = fs.readFileSync(getFixturesPath('jsonStyle.txt'), 'utf-8').trim();
-
   test('genDiff in the "stylish" format', () => {
+    const stylishDiff = fs.readFileSync(getFixturesPath('stylishStyle.txt'), 'utf-8').trim();
     expect(genDiff(fileJsonPath1, fileJsonPath2)).toEqual(stylishDiff);
     expect(genDiff(fileYmlPath1, fileYmlPath2)).toEqual(stylishDiff);
     expect(genDiff(fileYamlPath1, fileYamlPath2)).toEqual(stylishDiff);
   });
 
   test('genDiff in the "plain" format', () => {
+    const plainDiff = fs.readFileSync(getFixturesPath('plainStyle.txt'), 'utf-8').trim();
     expect(genDiff(fileJsonPath1, fileJsonPath2, 'plain')).toEqual(plainDiff);
     expect(genDiff(fileYmlPath1, fileYmlPath2, 'plain')).toEqual(plainDiff);
     expect(genDiff(fileYamlPath1, fileYamlPath2, 'plain')).toEqual(plainDiff);
   });
 
   test('genDiff in the "json" format', () => {
+    const jsonDiff = fs.readFileSync(getFixturesPath('jsonStyle.txt'), 'utf-8').trim();
     expect(genDiff(fileJsonPath1, fileJsonPath2, 'json')).toEqual(jsonDiff);
     expect(genDiff(fileYmlPath1, fileYmlPath2, 'json')).toEqual(jsonDiff);
     expect(genDiff(fileYamlPath1, fileYamlPath2, 'json')).toEqual(jsonDiff);
   });
 });
+
