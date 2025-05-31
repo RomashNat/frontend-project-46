@@ -8,11 +8,11 @@ const findDiff = (data1, data2) => {
     const value2 = data2[key]
 
     if (!_.has(data2, key)) {
-      return { key, type: 'removed', value: value1 }
+      return { key, type: 'remove', value: value1 }
     }
 
     if (!_.has(data1, key)) {
-      return { key, type: 'added', value: value2 }
+      return { key, type: 'add', value: value2 }
     }
 
     if (_.isEqual(value1, value2)) {

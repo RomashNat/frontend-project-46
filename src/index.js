@@ -13,7 +13,7 @@ const getFileType = (filePath) => {
   return 'json';
 };
 
-const genDiff = (filepath1, filepath2, formatName) => {
+const genDiff = (filepath1, filepath2, formatName = 'stylish') => {
   const content1 = fs.readFileSync(path.resolve(filepath1), 'utf-8');
   const content2 = fs.readFileSync(path.resolve(filepath2), 'utf-8');
 
