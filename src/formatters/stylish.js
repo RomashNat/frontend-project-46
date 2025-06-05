@@ -12,9 +12,9 @@ const stringify = (value, depth) => {
   const indent = buildIndent(depth + 1)
   const lines = Object.entries(value).map(
     ([key, val]) => `${indent}${key}: ${stringify(val, depth + 1)}`,
-  );
+  )
   return `{\n${lines.join('\n')}\n${buildIndent(depth)}}`
-};
+}
 
 const formatStylish = (diff, depth = 0) => {
   const indent = buildIndent(depth)
@@ -23,9 +23,9 @@ const formatStylish = (diff, depth = 0) => {
 
     switch (node.type) {
       case 'added':
-        return makeLine('+', node.key, node.value);
+        return makeLine('+', node.key, node.value)
       case 'removed':
-        return makeLine('-', node.key, node.value);
+        return makeLine('-', node.key, node.value)
       case 'changed':
         return [
           makeLine('-', node.key, node.value1),
