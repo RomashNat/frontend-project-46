@@ -12,7 +12,7 @@ const compat = new FlatCompat({
   recommendedConfig: pluginJs.configs.recommended,
 })
 
-export default [
+const eslintConfig = [
   {
     languageOptions: {
       globals: {
@@ -50,6 +50,9 @@ export default [
       'no-console': 'off',
       'import/no-extraneous-dependencies': 'off',
       'object-curly-newline': 'off',
+      'brace-style': ['error', 'stroustrup'], // Ваше новое правило
     },
   },
 ]
+
+export default eslintConfig
