@@ -21,9 +21,9 @@ describe('genDiff', () => {
     })
 
     test('should compare nested YAML files', () => {
-      const file1 = getFixturePath('file1.yml');
-      const file2 = getFixturePath('file2.yml');
-      expect(genDiff(file1, file2)).toEqual(expectedStylish);
+      const file1 = getFixturePath('file1.yml')
+      const file2 = getFixturePath('file2.yml')
+      expect(genDiff(file1, file2)).toEqual(expectedStylish)
     })
   })
 
