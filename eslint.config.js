@@ -32,7 +32,7 @@ export default [
   ...compat.extends('airbnb-base'),
   {
     rules: {
-      "semi": ["error", "always"],
+      semi: ['error', 'always'],
       'no-underscore-dangle': [
         'error',
         {
