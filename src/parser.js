@@ -17,4 +17,4 @@ const parse = (fileContent) => {
   return selectParse(content)
 }
 
-export default parse;
+export default parse
