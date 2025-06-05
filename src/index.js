@@ -13,6 +13,6 @@ const genDiff = (filepath1, filepath2, formatName = 'stylish') => {
   const diff = buildDiff(data1, data2)
   const format = getFormatter(formatName)
   return format(diff)
-};
+}
 
 export default genDiff
