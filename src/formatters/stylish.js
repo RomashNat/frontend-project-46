@@ -30,7 +30,7 @@ const formatStylish = (diff, depth = 0) => {
         return [
           makeLine('-', node.key, node.value1),
           makeLine('+', node.key, node.value2),
-        ];
+        ]
       case 'nested':
         return `${indent}    ${node.key}: {\n${formatStylish(node.children, depth + 1)}\n${indent}    }`
       case 'unchanged':
@@ -41,6 +41,6 @@ const formatStylish = (diff, depth = 0) => {
   })
 
   return depth === 0 ? `{\n${lines.flat().join('\n')}\n}` : lines.flat().join('\n')
-};
+}
 
 export default formatStylish
