@@ -22,7 +22,7 @@ const findDiff = (data1, data2) => {
         type: 'changed',
         value1,
         value2,
-      };
+      }
     }
     return { key, type: 'unchanged', value: value1 }
   })
