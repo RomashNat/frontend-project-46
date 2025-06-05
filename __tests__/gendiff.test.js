@@ -7,7 +7,7 @@ import genDiff from '../src/index.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const getFixturesPath = (filename) => path.resolve(__dirname, '..', '__fixtures__', filename);
+const getFixturesPath = filename => path.resolve(__dirname, '..', '__fixtures__', filename);
 
 describe('formatters', () => {
   const fileJsonPath1 = getFixturesPath('file1.json');
