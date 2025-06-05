@@ -38,4 +38,3 @@ describe('formatters', () => {
     expect(genDiff(fileYamlPath1, fileYamlPath2, 'json')).toEqual(jsonDiff)
   })
 })
-
