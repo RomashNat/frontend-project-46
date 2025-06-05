@@ -29,4 +29,4 @@ const buildPlainLines = (diff, parentPath = '') => diff.flatMap((node) => {
   }
 }).join('\n')
 
-export default (diff) => buildPlainLines(diff)
+export default diff => buildPlainLines(diff)
