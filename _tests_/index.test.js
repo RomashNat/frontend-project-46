@@ -35,9 +35,9 @@ describe('genDiff', () => {
     })
 
     test('should work with YAML files in plain format', () => {
-      const file1 = getFixturePath('file1.yml');
-      const file2 = getFixturePath('file2.yml');
-      expect(genDiff(file1, file2, 'plain')).toEqual(expectedPlain);
+      const file1 = getFixturePath('file1.yml')
+      const file2 = getFixturePath('file2.yml')
+      expect(genDiff(file1, file2, 'plain')).toEqual(expectedPlain)
     })
   })
 
@@ -48,7 +48,7 @@ describe('genDiff', () => {
       const result = genDiff(file1, file2, 'json')
 
       expect(() => JSON.parse(result)).not.toThrow()
-      expect(result).toEqual(expectedJson);
+      expect(result).toEqual(expectedJson)
     })
 
     test('should contain all diff information in JSON', () => {
@@ -64,7 +64,7 @@ describe('genDiff', () => {
         key: 'follow',
         type: 'added',
         value: false,
-      });
+      })
 
       expect(commonNode.children).toContainEqual({
         key: 'setting3',
