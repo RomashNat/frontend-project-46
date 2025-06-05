@@ -1,32 +1,32 @@
-import _ from 'lodash';
+import _ from 'lodash'
 
 const formatValue = (value) => {
   if (_.isObject(value)) {
-    return '[complex value]';
+    return '[complex value]'
   }
   if (typeof value === 'string') {
-    return `'${value}'`;
+    return `'${value}'`
   }
-  return String(value);
+  return String(value)
 };
 
 const buildPlainLines = (diff, parentPath = '') => diff.flatMap((node) => {
-  const currentPath = parentPath ? `${parentPath}.${node.key}` : node.key;
+  const currentPath = parentPath ? `${parentPath}.${node.key}` : node.key
 
   switch (node.type) {
     case 'added':
-      return `Property '${currentPath}' was added with value: ${formatValue(node.value)}`;
+      return `Property '${currentPath}' was added with value: ${formatValue(node.value)}`
     case 'removed':
-      return `Property '${currentPath}' was removed`;
+      return `Property '${currentPath}' was removed`
     case 'changed':
-      return `Property '${currentPath}' was updated. From ${formatValue(node.value1)} to ${formatValue(node.value2)}`;
+      return `Property '${currentPath}' was updated. From ${formatValue(node.value1)} to ${formatValue(node.value2)}`
     case 'nested':
       return buildPlainLines(node.children, currentPath);
     case 'unchanged':
       return [];
     default:
-      throw new Error(`Unknown node type: ${node.type}`);
+      throw new Error(`Unknown node type: ${node.type}`)
   }
-}).join('\n');
+}).join('\n')
 
-export default (diff) => buildPlainLines(diff);
+export default (diff) => buildPlainLines(diff)
