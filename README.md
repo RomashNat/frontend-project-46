@@ -20,3 +20,13 @@ This is the programm for finding the differences between two files.
 
 ### Comparing of flat format files: .yml, .yaml (example of work):
 [![asciicast](https://asciinema.org/a/crzsgyj4jOrZhDcfDyBMws9A6.svg)](https://asciinema.org/a/crzsgyj4jOrZhDcfDyBMws9A6)
+
+### Comparing files with a nested structure with output in "Stylish" format:
+[![asciicast](https://asciinema.org/a/crzsgyj4jOrZhDcfDyBMws9A6.svg)](https://asciinema.org/a/F2IYZG1mRp3nhpvExyKD8UYDR)
+
+### Comparing files with a nested structure with output in "Plain" format:
+[![asciicast](https://asciinema.org/a/crzsgyj4jOrZhDcfDyBMws9A6.svg)]( https://asciinema.org/a/8UGuyh0d5wVTY2a0lGtnQ6X3G)
+
+### Comparing files with a nested structure with output in "Json" format:
+[![asciicast](https://asciinema.org/a/crzsgyj4jOrZhDcfDyBMws9A6.svg)](https://asciinema.org/a/XiVcfBvstDV8WyzJvebTVK8jX)
+
