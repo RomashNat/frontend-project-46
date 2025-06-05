@@ -8,7 +8,7 @@ const formatValue = (value) => {
     return `'${value}'`
   }
   return String(value)
-};
+}
 
 const buildPlainLines = (diff, parentPath = '') => diff.flatMap((node) => {
   const currentPath = parentPath ? `${parentPath}.${node.key}` : node.key
@@ -21,9 +21,9 @@ const buildPlainLines = (diff, parentPath = '') => diff.flatMap((node) => {
     case 'changed':
       return `Property '${currentPath}' was updated. From ${formatValue(node.value1)} to ${formatValue(node.value2)}`
     case 'nested':
-      return buildPlainLines(node.children, currentPath);
+      return buildPlainLines(node.children, currentPath)
     case 'unchanged':
-      return [];
+      return []
     default:
       throw new Error(`Unknown node type: ${node.type}`)
   }
