@@ -12,13 +12,12 @@ program
   .arguments('<filepath1> <filepath2>')
   .action((filepath1, filepath2, options) => {
     try {
-      const diff = genDiff(filepath1, filepath2, options.format);
+      const diff = genDiff(filepath1, filepath2, options.format)
       console.log(diff)
-    } catch (error) 
-    {
-      console.error('Error:', error.message);
+    } catch (error) {
+      console.error('Error:', error.message)
       process.exit(1)
     }
-  });
+  })
 
 program.parse(process.argv)
