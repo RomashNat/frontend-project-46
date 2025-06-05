@@ -1,7 +1,12 @@
 # Diffchacker project
 
 ### Project description:
-This is the programm for finding the differences between two files.
+Difference Calculator is a program that determines the difference between two data structures. This is a popular task, for which there are many online services, for example http://www.jsondiff.com /. A similar mechanism is used when outputting tests or when automatically tracking changes in configuration files.
+
+#### Utility features:
+
+* Support for different input formats: yaml, json
+* Generating a report in plain text, stylish, and json format
 
 ## Hexlet tests and linter status:
 
