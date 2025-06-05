@@ -1,5 +1,5 @@
 import fs from 'fs';
-import { path, resolve}  from 'path';
+import { resolve }  from 'path';
 import parser from './parser.js';
 import selectFormat from './formatters/format.js';
 import findDiff from './findDiff.js';
