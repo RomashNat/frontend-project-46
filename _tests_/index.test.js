@@ -5,8 +5,8 @@ import genDiff from '../src/index.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-const getFixturePath = (filename) => resolve(__dirname, '..', '__fixtures__', filename);
-const readFile = (filename) => readFileSync(getFixturePath(filename), 'utf-8');
+const getFixturePath = filename => resolve(__dirname, '..', '__fixtures__', filename);
+const readFile = filename => readFileSync(getFixturePath(filename), 'utf-8');
 
 describe('genDiff', () => {
   const expectedStylish = readFile('expected-stylish.txt').trim();
@@ -58,7 +58,7 @@ describe('genDiff', () => {
 
       expect(result).toBeInstanceOf(Array);
 
-      const commonNode = result.find((node) => node.key === 'common');
+      const commonNode = result.find(node => node.key === 'common');
       expect(commonNode.type).toBe('nested');
       expect(commonNode.children).toContainEqual({
         key: 'follow',
@@ -73,7 +73,7 @@ describe('genDiff', () => {
         newValue: null,
       });
 
-      const setting6Node = commonNode.children.find((child) => child.key === 'setting6');
+      const setting6Node = commonNode.children.find(child => child.key === 'setting6');
       expect(setting6Node.children).toContainEqual({
         key: 'ops',
         type: 'added',
